@@ -4,36 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Word-Guess-Game</title>
+    <title>Guess the cookie!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <div>
-        <p id="get-started">Press any key to get started!</p>
+
+    <div class="container"></div>
+        <div class="jumbotron">
+            <h1>guess the cookie!</h1>
+            <p>i am getting mad hungry.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">..but what kind of cookie is it?</h4>
+                <p class="card-text">_ _ _ _ _ _ _</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                wrong!: <span id="wrongGuesses"></span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                guesses left: <span id="numGuesses">10</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                wins: <span id="winCounter">0</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                losses: <span id="lossCounter">0</span>
+            </div>
+        </div>
+    </div>        
+
+
+
+
+        <!-- <p id="get-started">Press any key to get started!</p>
+        <p id="wins"></p>
         <p id="current-word"></p>
         <p id="number-guesses-remaining"></p>
-        <p id="letters-guessed"></p>
-    </div>
+        <p id="letters-guessed"></p> -->
     <script>
         // <!-- Press any key to get started! -->
-        function anyKey(event) {
-            var start = event.key
-        };
+
             // This lets you know what key is pressed, need to find a way (variable?) to initialize game
         // <!-- Wins -->
             // if guesses correct word, then increase score by 1
         // <!-- Current Word -->
-        var wordBank = ["apple", "banana", "orange", "lemon", "lime", "peach", "plum"]
-        for (i = 0; i < wordBank.length; i++) {
-            var word = wordBank[i];
-            for (j = 0; j < word.length; j++) {
-                
-            }
-            // gives me exact letter i'm looking at
-            var letter = word[j]
-            word.length;
             // if letter matches array[word][letter] (use for loop to iterate through each letter), then replace line with that letter
             // create a line for each letter of each word (for each letter in word, line)
-        }
             // if win/lose, select new word 
         // <!-- Number of guesses remaining -->
             // for loop starting with 13, if input letter is not in word then subtract one (i--)
@@ -41,6 +71,9 @@
         // <!-- Letters already guessed -->
             // if letter is not in array[word][letter] then place letter in box
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
 
