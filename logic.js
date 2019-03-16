@@ -29,9 +29,19 @@ function start() {
     blanksAndSuccesses = [];
     
     // populate blanks and successes with right number of blanks
-    for (i = 0; i > lettersInCookie.length; i++) {
-        
-    }
+    for (var i = 0; i < numBlanks; i++) {
+        blanksAndSuccesses.push("_");
+    };
+
+    // functional HTML
+        // blanks per letter
+    document.getElementById("cookieGuess").innerHTML = blanksAndSuccesses.join(" ");
+        // guesses left
+    document.getElementById("numGuesses").innerHTML = guessesLeft;
+        // win count
+    document.getElementById("winCounter").innerHTML = winCount;
+        // loss count
+    document.getElementById("lossCounter").innerHTML = lossCount;
 
     // Testing
     console.log(selectedCookie);
@@ -44,5 +54,11 @@ function start() {
 }
 
 start();
+
+// get letter from keyclicks
+document.onkeyup = function(event) {
+    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+    alert(letterGuessed);
+}
 
 // Main Process
