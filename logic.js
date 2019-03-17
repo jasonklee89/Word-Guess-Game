@@ -15,7 +15,7 @@ var guessesLeft = 10;
 function start() {
     // select word
     selectedCookie = cookieBank[Math.floor(Math.random() * cookieBank.length)];
-    // break word apart into individual letters
+    // break word apart into individual letters, split("") takes away commas
     lettersInCookie = selectedCookie.split("");
     // get number of blanks
     numBlanks = lettersInCookie.length;
@@ -37,7 +37,7 @@ function start() {
         // blanks per letter
     document.getElementById("cookieGuess").innerHTML = blanksAndSuccesses.join(" ");
         // guesses left
-    document.getElementById("numGuesses").innerHTML = guessesLeft;
+    document.getElementById("guessesLeft").innerHTML = guessesLeft;
         // win count
     document.getElementById("winCounter").innerHTML = winCount;
         // loss count
@@ -51,14 +51,62 @@ function start() {
     console.log(wrongLetters);
     console.log(blanksAndSuccesses);
 
-}
+};
+
+// check if letter is in word
+function checkLetters(letter) {
+    var isLetterInCookie = false;
+    for (var i = 0; i < numBlanks; i++) {
+        if (selectedCookie[i] == letter) {
+            isLetterInCookie = true;
+        }
+    }
+    // check where in the word the letter exists, then populate BlanksAndSuccesses array
+    if (isLetterInCookie) {
+        for (var i = 0; i < numBlanks; i++) {
+            if (selectedCookie[i] == letter) {
+                blanksAndSuccesses[i] = letter;
+            }
+        }
+    } else {
+        wrongLetters.push(letter);
+        guessesLeft--;
+    }
+
+    // testing and debugging
+    console.log(blanksAndSuccesses);
+    console.log("wrongLetters: " + wrongLetters);
+};
+
+function roundComplete() {
+    console.log("Win Count: " + winCount + " | Loss Count: " + lossCount + " | guessesLeft: " + guessesLeft);
+    // update the page with guesses left, blanks and successes, wrong guesses
+    document.getElementById("guessesLeft").innerHTML = guessesLeft;
+    document.getElementById("cookieGuess").innerHTML = blanksAndSuccesses.join(" ");
+    document.getElementById("wrongLetters").innerHTML = wrongLetters.join(" ");
+    if (lettersInCookie.toString() == blanksAndSuccesses.toString()) {
+        winCount++;
+        alert("you win!!!!!")
+        // update the winCount on the page
+        document.getElementById("winCounter").innerHTML = winCount;
+        start();
+    }
+    if (guessesLeft < 1) {
+        lossCount++;
+        alert("you lose!!")
+        // update the lossCount on the page
+        document.getElementById("lossCounter").innerHTML = lossCount;
+        start();
+    }
+};
 
 start();
 
 // get letter from keyclicks
 document.onkeyup = function(event) {
     var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
-    alert(letterGuessed);
-}
-
-// Main Process
+    checkLetters(letterGuessed);
+    roundComplete();
+    // testing and debugging
+    console.log(letterGuessed);
+};
